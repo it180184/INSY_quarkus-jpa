@@ -8,21 +8,11 @@ public class PersonDTO {
     private LocalDate dateOfBirth;
     private String firstName;
     private String lastName;
-    private boolean isAwesome;
+    private boolean awesome;
     private float awesomeness;
     private BigDecimal wealth;
 
     public PersonDTO() {
-    }
-
-    public PersonDTO(String ssn, LocalDate dateOfBirth, String firstName, String lastName, boolean isAwesome, float awesomeness, BigDecimal wealth) {
-        SSN = ssn;
-        this.dateOfBirth = dateOfBirth;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.isAwesome = isAwesome;
-        this.awesomeness = awesomeness;
-        this.wealth = wealth;
     }
 
     // getter and setter
@@ -60,11 +50,11 @@ public class PersonDTO {
     }
 
     public boolean isAwesome() {
-        return isAwesome;
+        return awesome;
     }
 
     public void setAwesome(boolean awesome) {
-        isAwesome = awesome;
+        this.awesome = awesome;
     }
 
     public float getAwesomeness() {

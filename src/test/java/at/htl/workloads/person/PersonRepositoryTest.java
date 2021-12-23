@@ -46,4 +46,30 @@ public class PersonRepositoryTest extends IntTestBase {
         assertThat(loadedPerson.get()).isNull();
     }
 
+    @Test
+    public void addAddress_simple_success() {
+        var addressToAdd = new Address();
+        addressToAdd.setStreet("Musterstraße");
+        addressToAdd.setHouseNo("2");
+        addressToAdd.setZipCode("1234");
+        addressToAdd.setTown("Musterdorf");
+        addressToAdd.setCountry("Österreich");
+        addressToAdd.setPerson(null);
+
+        assertThatCode(()->personRepository.addAddress(addressToAdd)).doesNotThrowAnyException();
+    }
+
+    @Test
+    public void getAwesomePeopleCountTest() {
+        assertThat(personRepository.getAwesomePeopleCount()).isEqualTo(1L);
+    }
+
+    @Test
+    public void getAllCitiesTest() {
+        var cities = personRepository.getAllCities();
+        assertThat(cities).isNotNull();
+        assertThat(cities.size()).isEqualTo(1);
+        assertThat(cities.get(0)).isEqualTo("Musterdorf");
+    }
+
 }

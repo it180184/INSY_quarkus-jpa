@@ -30,4 +30,21 @@ public class PersonRepositoryImpl implements PersonRepository {
         var query = entityManager.createQuery("select p from Person p", Person.class);
         return query.getResultList();
     }
+
+    @Override
+    public void addAddress(Address address) {
+        entityManager.persist(address);
+    }
+
+    @Override
+    public Long getAwesomePeopleCount() {
+        var query = entityManager.createQuery("select count(p) from Person p where p.isAwesome = true", Long.class);
+        return query.getResultStream().findFirst().orElse(0L);
+    }
+
+    @Override
+    public List<String> getAllCities() {
+        var query = entityManager.createQuery("select distinct a.town from Address a", String.class);
+        return query.getResultList();
+    }
 }

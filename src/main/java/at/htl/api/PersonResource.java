@@ -4,14 +4,12 @@ import at.htl.model.person.PersonDTO;
 import at.htl.workloads.person.PersonService;
 
 import javax.transaction.Transactional;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/api/person")
+@Produces(MediaType.APPLICATION_JSON)
 public class PersonResource {
 
     private final PersonService personService;
@@ -29,9 +27,15 @@ public class PersonResource {
 
     @GET
     @Path("all")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getAllPeople() {
         var people = personService.getAllPeople();
+        return Response.ok(people).build();
+    }
+
+    @GET
+    @Path("all/awesome")
+    public Response getAwesomePeopleCount() {
+        var people = personService.getAwesomePeopleCount();
         return Response.ok(people).build();
     }
 }
